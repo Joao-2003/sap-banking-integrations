@@ -1,0 +1,6 @@
+banco,limite_carteira,concentracao,valor_max_titulo,prazo_max
+Safra,1000000.0,0.1,,180
+ABC,1500000.0,0.1,,180
+Sofisa,2000000.0,0.1,,180
+Banco do Brasil,2500000.0,0.15,,
+Santander,1000000.0,0.15,,

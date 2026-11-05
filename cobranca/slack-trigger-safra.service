@@ -1,0 +1,21 @@
+[Unit]
+Description=Slack trigger - Gerar Safra (CNAB)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/api_cobranca
+ExecStart=/var/www/api_cobranca/venv/bin/python /var/www/api_cobranca/slack_trigger_safra.py
+EnvironmentFile=/var/www/api_cobranca/slack_trigger_safra.env
+
+Restart=always
+RestartSec=10
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+parametros_prod.txt
+*.env
+credenciais/
+*.pem
+*.pfx
+*.csv
+!cobranca/regras_bancos.csv
+*.txt
+!requirements.txt
+!cobranca/parametros_exemplo.txt
+*.log
+*.lock
+historico_remessas/
+backups_*/
+boletos_*/
+Boletos */
+__pycache__/
+venv/

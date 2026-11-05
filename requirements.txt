@@ -1,0 +1,9 @@
+requests>=2.31
+pandas>=2.0
+lxml>=5.1
+flask>=3.0
+waitress>=3.0
+xlsxwriter>=3.2
+reportlab>=4.0
+slack-bolt>=1.18
+streamlit>=1.36

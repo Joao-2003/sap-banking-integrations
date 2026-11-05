@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Injeção de DDA e remessas CNAB 240 · demonstração</title>
+  <meta name="description" content="App Streamlit que casa boletos DDA do SAP com a remessa de pagamentos e gera TED/PIX, rodando no navegador.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.0/build/stlite.css">
+  <style>
+    html, body { margin: 0; background: #ffffff; color: #31333f; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+    #carregando { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font-size: 14px; z-index: 0; }
+    #carregando b { color: #ff4b4b; font-size: 16px; }
+    #carregando span { opacity: .75; max-width: 540px; text-align: center; line-height: 1.6; padding: 0 16px; }
+    #root { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+  <div id="carregando">
+    <b>Carregando o app de remessas…</b>
+    <span>O app Streamlit roda em Python dentro do navegador (Pyodide + stlite), sem servidor.
+      Na primeira visita leva de 20 a 60 segundos; depois fica em cache. Todos os dados são fictícios.</span>
+  </div>
+  <div id="root"></div>
+  <script type="module">
+    import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.0/build/stlite.js";
+    const arquivos = {
+      "app.py": "./remessas/app.py",
+      "processador_BOLETO.py": "./remessas/processador_BOLETO.py",
+      "processador_TED.py": "./remessas/processador_TED.py",
+      "processador_PIX.py": "./remessas/processador_PIX.py",
+      "gerar_exemplo.py": "./remessas/gerar_exemplo.py"
+    };
+    const files = Object.fromEntries(Object.entries(arquivos).map(([destino, origem]) => [destino, { url: origem }]));
+    mount({
+      requirements: ["openpyxl", "xlsxwriter", "requests"],
+      entrypoint: "app.py",
+      files,
+      streamlitConfig: { "client.toolbarMode": "viewer" },
+    }, document.getElementById("root"));
+  </script>
+</body>
+</html>
